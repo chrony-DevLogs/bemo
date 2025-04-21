@@ -5,9 +5,29 @@
     export let bgClass: string = "bg-primary-500/20";
     export let hoverClass: string = "hover:variant-soft-primary";
     export let showRating: boolean = true;
+
+    function handleInteraction(event: MouseEvent | KeyboardEvent) {
+        if (window.innerWidth <= 768 && 
+            (event.type === 'click' || 
+            (event instanceof KeyboardEvent && (event.key === 'Enter' || event.key === ' ')))) {
+            const card = event.currentTarget as HTMLElement;
+            const cardRect = card.getBoundingClientRect();
+            const offset = cardRect.top + window.scrollY - (window.innerHeight - cardRect.height) / 2;
+            
+            window.scrollTo({
+                top: offset,
+                behavior: 'smooth'
+            });
+        }
+    }
 </script>
 
-<div class="card variant-glass-surface p-8 text-center {hoverClass} transition-all duration-200 cursor-pointer flex flex-col max-w-[280px] w-full">
+<button 
+    type="button"
+    class="card variant-glass-surface p-8 text-center {hoverClass} transition-all duration-200 cursor-pointer flex flex-col max-w-[280px] w-full"
+    on:click={handleInteraction}
+    on:keydown={handleInteraction}
+>
     <div class="space-y-4 flex-1">
         <div class="{bgClass} p-3 rounded-full w-16 h-16 flex items-center justify-center mx-auto">
             <span class="text-3xl inline-flex items-center justify-center w-full h-full">{icon}</span>
@@ -22,7 +42,7 @@
         {/each}
     </div>
     {/if}
-</div>
+</button>
 
 <style>
     .card {
