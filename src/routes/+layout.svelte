@@ -6,10 +6,10 @@
 	import { base } from '$app/paths';
 	import '../app.postcss';
 
-	// Add proper export for SSG configuration
-	export const prerender = true;
-	export const ssr = true;
-	export const trailingSlash = 'always';
+	// Remove these three lines
+	// export const prerender = true;
+	// export const ssr = true;
+	// export const trailingSlash = 'always';
 	
 	let mouseX = 0;
 	let mouseY = 0;
@@ -61,7 +61,7 @@
 						<img src="{base}/BEMO.svg" alt="BMO" class="w-8 h-8 rounded-md" />
 						<span class="text-2xl mr-robot-font"><b>BEMO</b></span>
 					</a>
-					<div class="flex flex-col items-start text-sm opacity-75">
+					<div class="hidden md:flex flex-col items-start text-sm opacity-75">
 						<a href="tel:+21624680854" class="hover:text-primary-500 transition-colors">+216 24 680 854</a>
 						<a href="mailto:bemo.business.tech@gmail.com" class="hover:text-primary-500 transition-colors">bemo.business.tech@gmail.com</a>
 					</div>
@@ -71,7 +71,7 @@
 				<!-- Desktop Navigation -->
 				<nav class="hidden md:flex items-center gap-6">
 					<a href="{base}/services" class="text-lg hover:text-primary-500 transition-colors">خدماتنا</a>
-					<a href="{base}/about" class="text-lg hover:text-primary-500 transition-colors">عنا</a>
+					<a href="{base}/about" class="text-lg hover:text-primary-500 transition-colors">نحن</a>
 					<a href="{base}/contact" class="btn variant-filled-primary">إتصل الأن →</a>
 				</nav>
 				<!-- Mobile Menu Button -->
@@ -92,7 +92,7 @@
 						<a href="mailto:bemo.business.tech@gmail.com" class="text-sm block hover:text-primary-500 transition-colors">bemo.business.tech@gmail.com</a>
 					</div>
 					<a href="{base}/services" class="text-lg w-full hover:text-primary-500 transition-colors" on:click={toggleMenu}>خدماتنا</a>
-					<a href="{base}/about" class="text-lg w-full hover:text-primary-500 transition-colors" on:click={toggleMenu}>عنا</a>
+					<a href="{base}/about" class="text-lg w-full hover:text-primary-500 transition-colors" on:click={toggleMenu}>نحن</a>
 					<a href="{base}/contact" class="text-lg w-full hover:text-primary-500 transition-colors" on:click={toggleMenu}>إتصل الأن</a>
 				</nav>
 			</div>
