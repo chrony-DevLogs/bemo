@@ -75,8 +75,8 @@
     </div>
 
     <div class="text-center pt-8">
-        <a href="{base}/services" class="btn variant-glass-surface">← Back to Services</a>
-        <a href="{base}/contact" class="btn variant-glass-primary relative overflow-hidden">Book Now →</a>
+        <a href="{base}/services" class="btn variant-glass-surface">← أرجع لقائمت الخدمات</a>
+        <a href="{base}/contact" class="btn variant-glass-primary relative overflow-hidden">كلمنا توا →</a>
     </div>
 </div>
 

@@ -28,7 +28,7 @@
         <h1 class="h2">بـ <span class="text-primary-500">20 دينار</span> نوفرولك</h1>
     </div>
 
-    <div class="grid md:grid-cols-2 gap-8 max-w-[600px] mx-auto place-items-center w-full">
+    <div class="grid md:grid-cols-2 gap-8 max-w-[600px] mx-auto place-items-stretch w-full">
         {#each services as service}
             <div 
                 role="button"
@@ -54,7 +54,7 @@
                         }
                     }
                 }}
-                class="w-[280px]"
+                class="w-[280px] h-full"
             >
                 <div id={service.id} class="card variant-glass-surface p-8 text-center {service.hoverClass} transition-all duration-200 cursor-pointer flex flex-col h-full">
                     <div class="space-y-4 flex-1">
@@ -75,8 +75,8 @@
     </div>
 
     <div class="text-center pt-8">
-        <a href="{base}/services" class="btn variant-glass-surface">← ارجع للخدمات</a>
-        <a href="{base}/contact" class="btn variant-glass-primary relative overflow-hidden">احجز توا →</a>
+        <a href="{base}/services" class="btn variant-glass-surface">← أرجع للخدمات</a>
+        <a href="{base}/contact" class="btn variant-glass-primary relative overflow-hidden">أحجز توا →</a>
     </div>
 </div>
 
