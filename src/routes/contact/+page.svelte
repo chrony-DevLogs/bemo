@@ -1,11 +1,15 @@
 <script lang="ts">
     import { fade, fly } from 'svelte/transition';
     import { base } from '$app/paths';
-    import { page } from '$app/stores';
 
-    $: serviceName = $page.url.searchParams.get('sn') || '';
-    $: emoji = $page.url.searchParams.get('e') || '🤙';
-    $: bgClass = $page.url.searchParams.get('bg') || 'bg-tertiary-500/20';
+    interface PageData {
+        serviceName: string;
+        emoji: string;
+        bgClass: string;
+    }
+
+    export let data: PageData;
+    const { serviceName, emoji, bgClass } = data;
 </script>
 
 <div class="container mx-auto min-h-[calc(100vh-64px)] flex flex-col justify-center items-center py-16 px-4" in:fade={{ duration: 300 }}>
