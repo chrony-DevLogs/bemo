@@ -2,10 +2,11 @@
     import { fade, fly } from 'svelte/transition';
     import { base } from '$app/paths';
     import { page } from '$app/stores';
+    import { browser } from '$app/environment';
 
-    $: serviceName = $page.url.searchParams.get('sn') || 'الخدمة';
-    $: emoji = $page.url.searchParams.get('e') || '🚀';
-    $: bgClass = $page.url.searchParams.get('bg') || 'bg-warning-500';
+    $: serviceName = browser ? $page.url.searchParams.get('sn') : 'الخدمة';
+    $: emoji = browser ? $page.url.searchParams.get('e') : '🚀';
+    $: bgClass = browser ? $page.url.searchParams.get('bg') : 'bg-warning-500';
 </script>
 
 <div class="text-right flex items-center font-cairo justify-center min-h-[calc(100vh-64px)]">
