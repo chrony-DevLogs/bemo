@@ -5,7 +5,8 @@
 	import { afterNavigate } from '$app/navigation';
 	import { base } from '$app/paths';
 	import '../app.postcss';
-	export const prerender = true;
+	// Remove or comment out this line if it exists
+	// export const prerender = true;
 	export const trailingSlash = 'always';
 	
 	let mouseX = 0;
@@ -50,13 +51,19 @@
 	<svelte:fragment slot="header">
 		<AppBar class="px-4 py-3">
 			<svelte:fragment slot="lead">
-				<a 
-					href="{base}/"
-					class="flex items-center gap-2 hover:text-primary-500 transition-colors"
-				>
-					<img src="{base}/BEMO.svg" alt="BMO" class="w-8 h-8 rounded-md" />
-					<span class="text-2xl mr-robot-font"><b>BEMO</b></span>
-				</a>
+				<div class="flex items-center gap-12">
+					<a 
+						href="{base}/"
+						class="flex items-center gap-2 hover:text-primary-500 transition-colors"
+					>
+						<img src="{base}/BEMO.svg" alt="BMO" class="w-8 h-8 rounded-md" />
+						<span class="text-2xl mr-robot-font"><b>BEMO</b></span>
+					</a>
+					<div class="flex flex-col items-start text-sm opacity-75">
+						<a href="tel:+21624680854" class="hover:text-primary-500 transition-colors">+216 24 680 854</a>
+						<a href="mailto:bemo.business.tech@gmail.com" class="hover:text-primary-500 transition-colors">bemo.business.tech@gmail.com</a>
+					</div>
+				</div>
 			</svelte:fragment>
 			<svelte:fragment slot="trail">
 				<!-- Desktop Navigation -->
@@ -78,6 +85,10 @@
 				transition:fly={{ y: -10, duration: 200 }}
 			>
 				<nav class="flex flex-col items-start gap-4 p-4 min-w-[200px]">
+					<div class="w-full border-b border-surface-500/30 pb-2 mb-2">
+						<a href="tel:+21624680854" class="text-sm block hover:text-primary-500 transition-colors">+216 24 680 854</a>
+						<a href="mailto:bemo.business.tech@gmail.com" class="text-sm block hover:text-primary-500 transition-colors">bemo.business.tech@gmail.com</a>
+					</div>
 					<a href="{base}/services" class="text-lg w-full hover:text-primary-500 transition-colors" on:click={toggleMenu}>Services</a>
 					<a href="{base}/about" class="text-lg w-full hover:text-primary-500 transition-colors" on:click={toggleMenu}>About</a>
 					<a href="{base}/contact" class="text-lg w-full hover:text-primary-500 transition-colors" on:click={toggleMenu}>Contact</a>
@@ -86,13 +97,26 @@
 		{/if}
 	</svelte:fragment>
 
-	<div class="relative overflow-hidden min-h-screen" on:mousemove={handleMouseMove} role="presentation">
+	<div class="relative overflow-hidden min-h-screen flex flex-col" on:mousemove={handleMouseMove} role="presentation">
 		<div
 			bind:this={cursor}
 			class="pointer-events-none fixed -z-10 h-[700px] w-[700px] rounded-full bg-primary-500/20 blur-[100px] transition-transform duration-300 ease-out"
 			role="presentation"
 		/>
-		<slot />
+		<div class="flex-1">
+			<slot />
+		</div>
+		
+		<footer class="py-4 text-center bg-surface-100-800-token mt-auto">
+			<div class="container mx-auto px-4">
+				<p class="text-sm opacity-75">
+					© {new Date().getFullYear()} BEMO. All rights reserved.
+				</p>
+				<p class="text-xs opacity-50 mt-1">
+					Developed by BEMO Tech
+				</p>
+			</div>
+		</footer>
 	</div>
 </AppShell>
 

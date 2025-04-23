@@ -25,18 +25,18 @@
             <!-- Mission Section -->
             <div class="grid md:grid-cols-2 gap-8 mb-16">
                 <div class="card variant-glass-surface p-8" in:fly={{ x: -50, duration: 500 }}>
-                    <h2 class="h2 mb-4">Our Mission</h2>
+                    <h2 class="h2 mb-4">مهمتنا</h2>
                     <p class="opacity-90">
-                        To provide accessible, high-quality tech solutions that empower our community. Whether it's breathing new life into old computers or creating modern web applications, we're committed to excellence.
+                        .نوفرو حلول تكنولوجية في المتناول و بجودة عالية<br> .ملخر شعارنا هو الإتقان
                     </p>
                 </div>
                 <div class="card variant-glass-surface p-8" in:fly={{ x: 50, duration: 500 }}>
-                    <h2 class="h2 mb-4">Why Choose Us</h2>
+                    <h2 class="h2 mb-4">علاش تختارنا نحنا</h2>
                     <ul class="list-inside space-y-2 opacity-90 rtl" style="list-style-position: inside; direction: rtl;">
-                        <li class="before:content-['•'] before:ml-2 before:inline-block">Professional expertise</li>
-                        <li class="before:content-['•'] before:ml-2 before:inline-block">Affordable solutions</li>
-                        <li class="before:content-['•'] before:ml-2 before:inline-block">Quick turnaround time</li>
-                        <li class="before:content-['•'] before:ml-2 before:inline-block">Customer satisfaction focus</li>
+                        <li class="before:content-['•'] before:ml-2 before:inline-block">أكثر من 15 سنة خبرة في مجال الإعلامية</li>
+                        <li class="before:content-['•'] before:ml-2 before:inline-block">نحلولك المشاكل الي تواجهك بأسوام رمزية</li>
+                        <li class="before:content-['•'] before:ml-2 before:inline-block">نفرولك سرفيس سريع و إستجابة أسرع</li>
+                        <li class="before:content-['•'] before:ml-2 before:inline-block">نركزو على راحت العميل متاعنا</li>
                     </ul>
                 </div>
             </div>
@@ -46,11 +46,11 @@
                 class="card variant-glass-primary p-8 text-center"
                 in:fly={{ y: 50, duration: 500 }}
             >
-                <h2 class="h2 mb-4">Ready to Get Started?</h2>
-                <p class="mb-6 opacity-90">Let's bring your tech dreams to life together.</p>
+                <h2 class="h2 mb-4">مستعد تجرب خدمتنا؟</h2>
+                <p class="mb-6 opacity-90">bemo مثماش مستحيل مع</p>
                 <div class="flex justify-center gap-4">
-                    <a href="{base}/services" class="btn variant-filled">Our Services</a>
-                    <a href="{base}/contact" class="btn variant-filled-primary">Contact Us →</a>
+                    <a href="{base}/services" class="btn variant-filled">خدماتنا</a>
+                    <a href="{base}/contact" class="btn variant-filled-primary">كلمنا →</a>
                 </div>
             </div>
         </div>

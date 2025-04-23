@@ -1,6 +1,40 @@
 <script lang="ts">
     import { fade } from 'svelte/transition';
     import { base } from '$app/paths';
+
+    const services = [
+        {
+            id: "frontend",
+            icon: "⚡",
+            title: "Frontend",
+            description: "Modern Svelte<br>Web Application",
+            bgClass: "bg-primary-500/20",
+            hoverClass: "hover:variant-soft-primary"
+        },
+        {
+            id: "backend",
+            icon: "🔥",
+            title: "Backend",
+            description: "Golang API<br>SQLite Database",
+            bgClass: "bg-tertiary-500/20",
+            hoverClass: "hover:variant-soft-tertiary"
+        },
+        {
+            id: "deployment",
+            icon: "🚀",
+            title: "Deployment",
+            description: "Web Hosting<br>SEO & Performance",
+            bgClass: "bg-secondary-500/20",
+            hoverClass: "hover:variant-soft-secondary"
+        }
+    ];
+
+    function scrollToCard(id: string) {
+        const el = document.getElementById(id);
+        if (el) {
+            el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    }
 </script>
 
 <div class="container mx-auto min-h-[calc(100vh-64px)] flex flex-col justify-center items-center p-4 py-16" in:fade={{ duration: 300 }}>
@@ -9,56 +43,34 @@
     </div>
 
     <div class="grid md:grid-cols-3 gap-8 max-w-[900px] mx-auto place-items-center w-full">
-        <div class="card variant-glass-surface p-8 text-center hover:variant-soft-primary transition-all duration-200 cursor-pointer flex flex-col max-w-[280px] w-full">
-            <div class="space-y-4 flex-1">
-                <div class="bg-primary-500/20 p-3 rounded-full w-16 h-16 flex items-center justify-center mx-auto">
-                    <span class="text-3xl inline-flex items-center justify-center w-full h-full">⚡</span>
+        {#each services as service}
+            <div
+                id={service.id}
+                role="button"
+                tabindex="0"
+                on:click={() => scrollToCard(service.id)}
+                on:keydown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        scrollToCard(service.id);
+                    }
+                }}
+                class={`card variant-glass-surface p-8 text-center transition-all duration-200 cursor-pointer flex flex-col max-w-[280px] w-full ${service.hoverClass}`}
+            >
+                <div class="space-y-4 flex-1">
+                    <div class={`${service.bgClass} p-3 rounded-full w-16 h-16 flex items-center justify-center mx-auto`}>
+                        <span class="text-3xl inline-flex items-center justify-center w-full h-full">{service.icon}</span>
+                    </div>
+                    <h3 class="h3">{service.title}</h3>
+                    <p class="opacity-80" innerHTML={service.description}></p>
                 </div>
-                <h3 class="h3">Frontend</h3>
-                <p class="opacity-80">Modern Svelte<br>Web Application</p>
-            </div>
-            <div class="flex justify-center gap-1 text-warning-500 pt-4">
-                <span class="text-xl">★</span>
-                <span class="text-xl">★</span>
-                <span class="text-xl">★</span>
-                <span class="text-xl">★</span>
-                <span class="text-xl">★</span>
-            </div>
-        </div>
-
-        <div class="card variant-glass-surface p-8 text-center hover:variant-soft-tertiary transition-all duration-200 cursor-pointer flex flex-col max-w-[280px] w-full">
-            <div class="space-y-4 flex-1">
-                <div class="bg-tertiary-500/20 p-3 rounded-full w-16 h-16 flex items-center justify-center mx-auto">
-                    <span class="text-3xl inline-flex items-center justify-center w-full h-full">🔥</span>
+                <div class="flex justify-center gap-1 text-warning-500 pt-4">
+                    {#each Array(5) as _, i}
+                        <span class="text-xl" key={i}>★</span>
+                    {/each}
                 </div>
-                <h3 class="h3">Backend</h3>
-                <p class="opacity-80">Golang API<br>SQLite Database</p>
             </div>
-            <div class="flex justify-center gap-1 text-warning-500 pt-4">
-                <span class="text-xl">★</span>
-                <span class="text-xl">★</span>
-                <span class="text-xl">★</span>
-                <span class="text-xl">★</span>
-                <span class="text-xl">★</span>
-            </div>
-        </div>
-
-        <div class="card variant-glass-surface p-8 text-center hover:variant-soft-secondary transition-all duration-200 cursor-pointer flex flex-col max-w-[280px] w-full">
-            <div class="space-y-4 flex-1">
-                <div class="bg-secondary-500/20 p-3 rounded-full w-16 h-16 flex items-center justify-center mx-auto">
-                    <span class="text-3xl inline-flex items-center justify-center w-full h-full">🚀</span>
-                </div>
-                <h3 class="h3">Deployment</h3>
-                <p class="opacity-80">Web Hosting<br>SEO & Performance</p>
-            </div>
-            <div class="flex justify-center gap-1 text-warning-500 pt-4">
-                <span class="text-xl">★</span>
-                <span class="text-xl">★</span>
-                <span class="text-xl">★</span>
-                <span class="text-xl">★</span>
-                <span class="text-xl">★</span>
-            </div>
-        </div>
+        {/each}
     </div>
 
     <div class="text-center pt-8">

@@ -1,101 +1,117 @@
 <script lang="ts">
     import { fade } from 'svelte/transition';
+    import Carousel from '$lib/components/Carousel.svelte';
+    import Card from '$lib/components/Card.svelte';
     import { base } from '$app/paths';
+
+    const services = [
+        {
+            id: "scan",
+            icon: "🔍",
+            title: "System Scan",
+            description: "Complete system scan<br>for performance issues",
+            bgClass: "bg-tertiary-500/20",
+            hoverClass: "hover:variant-soft-tertiary"
+        },
+        {
+            id: "driver",
+            icon: "⚙️",
+            title: "Driver Check",
+            description: "Verify all drivers<br>are working properly",
+            bgClass: "bg-secondary-500/20",
+            hoverClass: "hover:variant-soft-secondary"
+        },
+        {
+            id: "dll",
+            icon: "🔧",
+            title: "DLL File Fix",
+            description: "Fix corrupted or<br>missing DLL files",
+            bgClass: "bg-tertiary-500/20",
+            hoverClass: "hover:variant-soft-tertiary"
+        },
+        {
+            id: "software",
+            icon: "📦",
+            title: "Software Upgrade",
+            description: "Suggestions for<br>software updates",
+            bgClass: "bg-success-500/20",
+            hoverClass: "hover:variant-soft-success"
+        },
+        {
+            id: "disk",
+            icon: "💿",
+            title: "Disk Boost",
+            description: "HDD performance<br>optimization",
+            bgClass: "bg-warning-500/20",
+            hoverClass: "hover:variant-soft-warning"
+        }
+    ];
+
+    function handleCardScroll(e: MouseEvent | TouchEvent | KeyboardEvent) {
+        e.preventDefault();
+        const target = e.currentTarget as HTMLElement;
+        const targetId = target.id;
+        
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center'
+            });
+        }
+    }
 </script>
 
-<div class="container mx-auto min-h-[calc(100vh-64px)] flex flex-col justify-center items-center p-4 py-16" in:fade={{ duration: 300 }}>
+<div class="container mx-auto min-h-[calc(100vh-64px)] flex flex-col justify-center items-center py-16 lg:px-0 px-2" in:fade={{ duration: 300 }}>
     <div class="text-center pb-8 md:pb-16">
-        <h1 class="h2 font-mono">For <span class="text-primary-500">Contact Us</span> You Get</h1>
+        <h1 class="h2 font-mono">For <span class="text-primary-500">30DT</span> You Get</h1>
     </div>
 
-    <div class="grid md:grid-cols-3 gap-8 max-w-[900px] mx-auto place-items-center w-full">
-        <div class="card variant-glass-surface p-8 text-center hover:variant-soft-tertiary transition-all duration-200 cursor-pointer flex flex-col max-w-[280px] w-full">
-            <div class="space-y-4 flex-1">
-                <div class="bg-tertiary-500/20 p-3 rounded-full w-16 h-16 flex items-center justify-center mx-auto">
-                    <span class="text-3xl inline-flex items-center justify-center w-full h-full">⚡</span>
-                </div>
-                <h3 class="h3">Svelte App</h3>
-                <p class="opacity-80">Modern and visually striking<br>frontend with the Svelte framework!</p>
-            </div>
-            <div class="flex justify-center gap-1 text-warning-500 pt-4">
-                <span class="text-xl">★</span>
-                <span class="text-xl">★</span>
-                <span class="text-xl">★</span>
-                <span class="text-xl">★</span>
-                <span class="text-xl">★</span>
-            </div>
-        </div>
-
-        <div class="card variant-glass-surface p-8 text-center hover:variant-soft-primary transition-all duration-200 cursor-pointer flex flex-col max-w-[280px] w-full">
-            <div class="space-y-4 flex-1">
-                <div class="bg-primary-500/20 p-3 rounded-full w-16 h-16 flex items-center justify-center mx-auto">
-                    <span class="text-3xl inline-flex items-center justify-center w-full h-full">🚀</span>
-                </div>
-                <h3 class="h3">Deployment</h3>
-                <p class="opacity-80">Professional hosting setup<br>with SSL & CDN integration</p>
-            </div>
-            <div class="flex justify-center gap-1 text-warning-500 pt-4">
-                <span class="text-xl">★</span>
-                <span class="text-xl">★</span>
-                <span class="text-xl">★</span>
-                <span class="text-xl">★</span>
-                <span class="text-xl">★</span>
-            </div>
-        </div>
-
-        <div class="card variant-glass-surface p-8 text-center hover:variant-soft-secondary transition-all duration-200 cursor-pointer flex flex-col max-w-[280px] w-full">
-            <div class="space-y-4 flex-1">
-                <div class="bg-secondary-500/20 p-3 rounded-full w-16 h-16 flex items-center justify-center mx-auto">
-                    <span class="text-3xl inline-flex items-center justify-center w-full h-full">📈</span>
-                </div>
-                <h3 class="h3">SEO</h3>
-                <p class="opacity-80">Search engine optimization<br>& performance tuning</p>
-            </div>
-            <div class="flex justify-center gap-1 text-warning-500 pt-4">
-                <span class="text-xl">★</span>
-                <span class="text-xl">★</span>
-                <span class="text-xl">★</span>
-                <span class="text-xl">★</span>
-                <span class="text-xl">★</span>
-            </div>
+    <div class="w-full lg:px-0 px-2">
+        <div class="md:w-full w-[296px] mx-auto">
+            <Carousel items={services} let:items let:appendItems>
+                {#each [...items, ...items.slice(0, appendItems)] as service}
+                    <div 
+                        role="button"
+                        tabindex="0"
+                        on:click={() => {
+                            const element = document.getElementById(service.id);
+                            if (element) {
+                                element.scrollIntoView({
+                                    behavior: 'smooth',
+                                    block: 'center'
+                                });
+                            }
+                        }}
+                        on:keydown={(e) => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                                e.preventDefault();
+                                const element = document.getElementById(service.id);
+                                if (element) {
+                                    element.scrollIntoView({
+                                        behavior: 'smooth',
+                                        block: 'center'
+                                    });
+                                }
+                            }
+                        }}
+                        class="flex-shrink-0 w-[280px]"
+                    >
+                        <Card
+                            id={service.id}
+                            icon={service.icon}
+                            title={service.title}
+                            description={service.description}
+                            bgClass={service.bgClass}
+                            hoverClass={service.hoverClass}
+                        />
+                    </div>
+                {/each}
+            </Carousel>
         </div>
     </div>
 
     <div class="text-center pt-8">
         <a href="{base}/services" class="btn variant-glass-surface">← Back to Services</a>
-        <a href="{base}/contact" class="btn variant-glass-primary relative overflow-hidden px-6 py-3">Contact Us →</a>
+        <a href="{base}/contact" class="btn variant-glass-primary relative overflow-hidden">Book Now →</a>
     </div>
 </div>
-
-<style>
-    .card, .btn {
-        position: relative;
-        overflow: hidden;
-    }
-
-    .card::after, .btn::after {
-        content: '';
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: linear-gradient(
-            45deg,
-            transparent,
-            rgba(255, 255, 255, 0.1),
-            transparent
-        );
-        transform: rotate(45deg);
-        animation: glow 3s linear infinite;
-    }
-
-    @keyframes glow {
-        0% {
-            transform: translateX(-100%) translateY(-100%) rotate(45deg);
-        }
-        100% {
-            transform: translateX(100%) translateY(100%) rotate(45deg);
-        }
-    }
-</style>

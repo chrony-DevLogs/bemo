@@ -16,6 +16,9 @@
     let isMobile = false;
     let currentItemsPerView = itemsPerView;
     let isVerticalMode = false;
+    let isScrolling = false;
+    let canAutoScroll = true;
+    let scrollTimeout: NodeJS.Timeout;
 
     $: if (browser) {
         updateViewConfig();
@@ -42,11 +45,29 @@
             updateViewConfig();
         };
 
+        const handleScroll = () => {
+            if (!isVerticalMode) {
+                clearTimeout(scrollTimeout);
+                isScrolling = true;
+                
+                scrollTimeout = setTimeout(() => {
+                    isScrolling = false;
+                    // Update currentIndex based on scroll position
+                    const scrollLeft = slider.scrollLeft;
+                    currentIndex = Math.round(scrollLeft / scrollDistance);
+                    restartInterval();
+                }, 150);
+            }
+        };
+
+        slider.addEventListener('scroll', handleScroll);
         window.addEventListener('resize', handleResize);
         handleResize();
 
         return () => {
             clearInterval(interval);
+            clearTimeout(scrollTimeout);
+            slider.removeEventListener('scroll', handleScroll);
             window.removeEventListener('resize', handleResize);
         };
     });
@@ -56,22 +77,55 @@
     $: hasAppendedItems = appendItems > 0;
     $: scrollDistance = (cardWidth * currentItemsPerView) + (gapWidth * currentItemsPerView);
 
+    function handleMouseEnter() {
+        if (!isMobile) {
+            canAutoScroll = false;
+            clearInterval(interval);
+        }
+    }
+
+    function handleMouseLeave() {
+        if (!isMobile) {
+            canAutoScroll = true;
+            restartInterval();
+        }
+    }
+
     function handleTouchStart(e: TouchEvent) {
+        if (isVerticalMode) return;
         touchStartX = e.touches[0].clientX;
+        canAutoScroll = false;
+        clearInterval(interval);
     }
 
     function handleTouchEnd(e: TouchEvent) {
+        if (isVerticalMode) return;
         touchEndX = e.changedTouches[0].clientX;
         const swipeDistance = touchEndX - touchStartX;
 
         if (Math.abs(swipeDistance) > 50) {
             swipeDistance > 0 ? prev() : next();
+        } else {
+            scrollToCurrentIndex();
         }
+        canAutoScroll = true;
+        restartInterval();
     }
 
     function restartInterval() {
         clearInterval(interval);
-        interval = setInterval(next, autoplayInterval);
+        if (canAutoScroll) {
+            interval = setInterval(next, autoplayInterval);
+        }
+    }
+
+    function scrollToCurrentIndex() {
+        if (!slider) return;
+        const targetScroll = currentIndex * scrollDistance;
+        slider.scrollTo({
+            left: targetScroll,
+            behavior: isScrolling ? 'auto' : 'smooth'
+        });
     }
 
     function next() {
@@ -99,37 +153,43 @@
         scrollToCurrentIndex();
         restartInterval();
     }
-
-    function scrollToCurrentIndex() {
-        if (!slider) return;
-        slider.scrollTo({
-            left: currentIndex * scrollDistance,
-            behavior: 'smooth'
-        });
-    }
 </script>
 
 <div class="relative w-full max-w-[1040px] mx-auto flex items-center gap-4">
     {#if !isVerticalMode}
-        <button class="btn variant-glass-surface aspect-square z-10" on:click={prev}>←</button>
+        <button 
+            class="btn variant-glass-surface aspect-square z-10" 
+            on:click={prev}
+            aria-label="Previous slide"
+        >←</button>
     {/if}
 
     <div
         class="overflow-hidden flex-1 min-w-0"
         on:touchstart={handleTouchStart}
         on:touchend={handleTouchEnd}
+        on:mouseenter={handleMouseEnter}
+        on:mouseleave={handleMouseLeave}
+        role="region"
+        aria-label="Carousel content"
     >
         <div
             class="carousel-slider"
             class:carousel-horizontal={!isVerticalMode}
             class:carousel-vertical={isVerticalMode}
+            role="group"
+            aria-label="Slides"
         >
             <slot {items} appendItems={appendItems} />
         </div>
     </div>
 
     {#if !isVerticalMode}
-        <button class="btn variant-glass-surface aspect-square z-10" on:click={next}>→</button>
+        <button 
+            class="btn variant-glass-surface aspect-square z-10" 
+            on:click={next}
+            aria-label="Next slide"
+        >→</button>
     {/if}
 </div>
 
