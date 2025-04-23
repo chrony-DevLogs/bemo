@@ -68,9 +68,9 @@
 			<svelte:fragment slot="trail">
 				<!-- Desktop Navigation -->
 				<nav class="hidden md:flex items-center gap-6">
-					<a href="{base}/services" class="text-lg hover:text-primary-500 transition-colors">Services</a>
-					<a href="{base}/about" class="text-lg hover:text-primary-500 transition-colors">About</a>
-					<a href="{base}/contact" class="btn variant-filled-primary">Contact →</a>
+					<a href="{base}/services" class="text-lg hover:text-primary-500 transition-colors">خدماتنا</a>
+					<a href="{base}/about" class="text-lg hover:text-primary-500 transition-colors">عنا</a>
+					<a href="{base}/contact" class="btn variant-filled-primary">إتصل الأن →</a>
 				</nav>
 				<!-- Mobile Menu Button -->
 				<button class="md:hidden btn btn-sm menu-button" on:click={toggleMenu}>
@@ -89,9 +89,9 @@
 						<a href="tel:+21624680854" class="text-sm block hover:text-primary-500 transition-colors">+216 24 680 854</a>
 						<a href="mailto:bemo.business.tech@gmail.com" class="text-sm block hover:text-primary-500 transition-colors">bemo.business.tech@gmail.com</a>
 					</div>
-					<a href="{base}/services" class="text-lg w-full hover:text-primary-500 transition-colors" on:click={toggleMenu}>Services</a>
-					<a href="{base}/about" class="text-lg w-full hover:text-primary-500 transition-colors" on:click={toggleMenu}>About</a>
-					<a href="{base}/contact" class="text-lg w-full hover:text-primary-500 transition-colors" on:click={toggleMenu}>Contact</a>
+					<a href="{base}/services" class="text-lg w-full hover:text-primary-500 transition-colors" on:click={toggleMenu}>خدماتنا</a>
+					<a href="{base}/about" class="text-lg w-full hover:text-primary-500 transition-colors" on:click={toggleMenu}>عنا</a>
+					<a href="{base}/contact" class="text-lg w-full hover:text-primary-500 transition-colors" on:click={toggleMenu}>إتصل الأن</a>
 				</nav>
 			</div>
 		{/if}

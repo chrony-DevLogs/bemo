@@ -117,13 +117,13 @@
 			bgColor="bg-warning-500"
 			links={[
 				{
-					href: `${base}/services/soon?sn=Development Web`,
+					href: `${base}/services/soon?sn=Development Web&e=🚀&bg=bg-warning-500`,
 					text: "Développement Web",
 					badge: "Contact Us",
 					variant: "variant-soft-warning"
 				},
 				{
-					href: `${base}/services/soon?sn=Development Mobile`,
+					href: `${base}/services/soon?sn=Development Mobile&e=🚀&bg=bg-warning-500`,
 					text: "Développement Mobile",
 					badge: "Contact Us",
 					variant: "variant-soft-warning"

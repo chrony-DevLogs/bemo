@@ -39,7 +39,7 @@
                         href="{base}/contact?sn={serviceName}&e=🚀&bg=bg-warning-500" 
                         class="btn variant-filled-primary"
                     >
-                        تواصل معنا →
+                        كلمنا توا →
                     </a>
                 </div>
             </div>
