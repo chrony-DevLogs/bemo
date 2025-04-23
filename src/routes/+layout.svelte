@@ -5,8 +5,10 @@
 	import { afterNavigate } from '$app/navigation';
 	import { base } from '$app/paths';
 	import '../app.postcss';
-	// Remove or comment out this line if it exists
-	// export const prerender = true;
+
+	// Add proper export for SSG configuration
+	export const prerender = true;
+	export const ssr = true;
 	export const trailingSlash = 'always';
 	
 	let mouseX = 0;
