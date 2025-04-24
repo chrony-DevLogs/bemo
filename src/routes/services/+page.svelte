@@ -79,13 +79,21 @@
 			bgColor="bg-secondary-500"
 			links={[
 				{
-					href: `${base}/services/soon?sn=Configuration Rétro&e=🎮&bg=variant-soft-secondary`,
+					href: `${base}/services/soon?${new URLSearchParams({
+						sn: 'Configuration Rétro',
+						e: '🎮',
+						bg: 'variant-soft-secondary'
+					})}`,
 					text: "Configuration Rétro",
 					badge: "35DT",
 					variant: "variant-soft-secondary"
 				},
 				{
-					href: `${base}/services/soon?sn=Configuration Rétro Avancée&e=🎮&bg=variant-soft-secondary`,
+					href: `${base}/services/soon?${new URLSearchParams({
+						sn: 'Configuration Rétro Avancée',
+						e: '🎮',
+						bg: 'variant-soft-secondary'
+					})}`,
 					text: "Configuration Rétro Avancée",
 					badge: "65DT",
 					variant: "variant-soft-secondary"
@@ -117,13 +125,21 @@
 			bgColor="bg-warning-500"
 			links={[
 				{
-					href: `${base}/services/soon?sn=Development Web&e=🚀&bg=bg-warning-500`,
+					href: `${base}/services/soon?${new URLSearchParams({
+						sn: 'Development Web',
+						e: '🚀',
+						bg: 'bg-warning-500'
+					})}`,
 					text: "Développement Web",
 					badge: "Contact Us",
 					variant: "variant-soft-warning"
 				},
 				{
-					href: `${base}/services/soon?sn=Development Mobile&e=🚀&bg=bg-warning-500`,
+					href: `${base}/services/soon?${new URLSearchParams({
+						sn: 'Development Mobile',
+						e: '🚀',
+						bg: 'bg-warning-500'
+					})}`,
 					text: "Développement Mobile",
 					badge: "Contact Us",
 					variant: "variant-soft-warning"

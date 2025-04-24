@@ -1,26 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" href="%sveltekit.assets%/BEMO.svg" />
-		<title>BEMO PC REPAIR</title>
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
 		<meta name="viewport" content="width=device-width" />
-		<style>
-			* {
-				-webkit-tap-highlight-color: transparent;
-				-webkit-touch-callout: none;
-				-webkit-user-select: none;
-				user-select: none;
-			}
-
-			input, textarea {
-				-webkit-user-select: text;
-				user-select: text;
-			}
-		</style>
+		<script src="%sveltekit.assets%/spa-redirect.js"></script>
 		%sveltekit.head%
 	</head>
 	<body data-sveltekit-preload-data="hover" data-theme="skeleton">
-		<div style="display: contents" class="h-full overflow-hidden">%sveltekit.body%</div>
+		<div style="display: contents">%sveltekit.body%</div>
 	</body>
 </html>
